@@ -1,5 +1,6 @@
 package com.csm.roomdatabase.data
 
+
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -25,19 +26,21 @@ abstract class WordDatabase:RoomDatabase() {
                 context,WordDatabase::class.java,"word.db"
             ).build()
         }
-    }
+        @Volatile // digunakan untuk memastikan bahwa INSTANCE selalu dilihat dalam keadaan yang benar saat digunakan oleh banyak utas secara bersamaan.
 
-    @Volatile // digunakan untuk memastikan bahwa INSTANCE selalu dilihat dalam keadaan yang benar saat digunakan oleh banyak utas secara bersamaan.
+        private var INSTANCE :WordDatabase? =null
 
-    private var INSTANCE :WordDatabase? =null
-
-    fun getDatabaseInstance(context: Context):WordDatabase{
-        if(INSTANCE == null){
-            synchronized(this){
-                INSTANCE = buildDatabase(context)
+        fun getDatabaseInstance(context: Context):WordDatabase{
+            if(INSTANCE == null){
+                synchronized(this){
+                    INSTANCE = buildDatabase(context)
+                }
             }
+            return INSTANCE!!
         }
-        return INSTANCE!!
+
     }
+
+
 
 }

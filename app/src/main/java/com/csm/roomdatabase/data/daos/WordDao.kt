@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.csm.roomdatabase.data.models.Word
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WordDao {
@@ -23,5 +24,6 @@ interface WordDao {
     suspend fun updateWord(word:Word):Int
 
     @Query("SELECT * FROM word_table")
-    suspend fun getAllWords():List<Word>
+    fun getAllWords(): Flow<List<Word>>
+    //Flow adalah salah satu bagian dari Kotlin Coroutines, yang digunakan untuk mengirim aliran (stream) data asinkron. Dalam hal ini, Flow digunakan untuk mengamati perubahan data dalam tabel "word_table".
 }

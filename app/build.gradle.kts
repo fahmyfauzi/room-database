@@ -75,4 +75,6 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     testImplementation("androidx.room:room-testing:$room_version")
     androidTestImplementation("androidx.room:room-testing:$room_version")
+
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 }
