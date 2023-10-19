@@ -17,10 +17,10 @@ interface WordDao {
     suspend fun insertWords(word:List<Word>):List<Long>
 
     @Delete
-    suspend fun deleteWord(word:Word):Long
+    suspend fun deleteWord(word:Word):Int
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    suspend fun updateWord(word:Word):Long
+    suspend fun updateWord(word:Word):Int
 
     @Query("SELECT * FROM word_table")
     suspend fun getAllWords():List<Word>

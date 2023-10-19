@@ -1,7 +1,8 @@
 package com.csm.roomdatabase.data.converters
 
 import androidx.room.TypeConverter
-import java.sql.Date
+import java.util.Date
+
 
 class RoomConverters {
 
