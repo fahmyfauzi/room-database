@@ -3,6 +3,7 @@ package com.csm.roomdatabase
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -22,16 +23,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.csm.roomdatabase.data.WordDatabase
 import com.csm.roomdatabase.data.repository.WordRepository
 import com.csm.roomdatabase.ui.theme.RoomDatabaseTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint //Anotasi ini digunakan untuk menandai bahwa kelas MainActivity merupakan sebuah komponen Android yang dapat diinjeksi oleh Hilt
 class MainActivity : ComponentActivity() {
 
     //by lazy, yang artinya objek MainViewModel akan diinisialisasi hanya saat pertama kali digunakan.
-    private val viewModel:MainViewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelFactory(WordRepository(WordDatabase.getDatabaseInstance(this)))
-        ).get(MainViewModel::class.java)
-    }
+    private val viewModel:MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

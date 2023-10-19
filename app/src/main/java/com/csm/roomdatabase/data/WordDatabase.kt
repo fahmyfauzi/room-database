@@ -20,27 +20,5 @@ import com.csm.roomdatabase.data.models.Word
 abstract class WordDatabase:RoomDatabase() {
     abstract fun wordDao():WordDao
 
-    companion object{
-        private fun buildDatabase(context: Context):WordDatabase{
-            return Room.databaseBuilder(
-                context,WordDatabase::class.java,"word.db"
-            ).build()
-        }
-        @Volatile // digunakan untuk memastikan bahwa INSTANCE selalu dilihat dalam keadaan yang benar saat digunakan oleh banyak utas secara bersamaan.
-
-        private var INSTANCE :WordDatabase? =null
-
-        fun getDatabaseInstance(context: Context):WordDatabase{
-            if(INSTANCE == null){
-                synchronized(this){
-                    INSTANCE = buildDatabase(context)
-                }
-            }
-            return INSTANCE!!
-        }
-
-    }
-
-
 
 }
