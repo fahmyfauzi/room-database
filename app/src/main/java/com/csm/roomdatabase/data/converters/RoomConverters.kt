@@ -1,0 +1,18 @@
+package com.csm.roomdatabase.data.converters
+
+import androidx.room.TypeConverter
+import java.sql.Date
+
+class RoomConverters {
+
+    @TypeConverter
+    fun convertDateToLong(date: Date):Long{
+        return date.time
+    }
+
+
+    @TypeConverter
+    fun convertLongToDate(timeLong:Long):Date{
+        return Date(timeLong)
+    }
+}
