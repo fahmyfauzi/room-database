@@ -26,4 +26,11 @@ interface WordDao {
     @Query("SELECT * FROM word_table")
     fun getAllWords(): Flow<List<Word>>
     //Flow adalah salah satu bagian dari Kotlin Coroutines, yang digunakan untuk mengirim aliran (stream) data asinkron. Dalam hal ini, Flow digunakan untuk mengamati perubahan data dalam tabel "word_table".
+
+    //coba test room database
+    @Query("SELECT * FROM word_table ORDER BY word ASC")
+    fun getAlphabeticallySort(): List<Word>
+
+    @Query("SELECT * FROM word_table")
+    fun getWords():List<Word>
 }
