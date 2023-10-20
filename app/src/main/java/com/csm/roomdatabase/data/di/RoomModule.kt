@@ -3,7 +3,9 @@ package com.csm.roomdatabase.data.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.csm.roomdatabase.data.RoomWordDataSource
 import com.csm.roomdatabase.data.WordDatabase
+import com.csm.roomdatabase.data.WordLocalDataSource
 import com.csm.roomdatabase.data.daos.WordDao
 import dagger.Module
 import dagger.Provides
@@ -31,6 +33,13 @@ object RoomModule {
     @Provides
     fun providerWordDao(wordDatabase: WordDatabase):WordDao{
         return wordDatabase.wordDao()
+    }
+
+    //mendefinisikan fungsi yang akan menyediakan implementasi dari WordLocalDataSource yang akan digunakan dalam aplikasi
+    @Provides
+    //Ini adalah fungsi yang akan memberikan implementasi dari WordLocalDataSource
+    fun provideLocalWordDataSource(wordDao: WordDao):WordLocalDataSource {
+        return RoomWordDataSource(wordDao)
     }
 }
 
