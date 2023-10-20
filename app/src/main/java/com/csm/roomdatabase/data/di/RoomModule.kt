@@ -7,6 +7,7 @@ import com.csm.roomdatabase.data.RoomWordDataSource
 import com.csm.roomdatabase.data.WordDatabase
 import com.csm.roomdatabase.data.WordLocalDataSource
 import com.csm.roomdatabase.data.daos.WordDao
+import com.csm.roomdatabase.data.migration.migration2To3
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +28,7 @@ object RoomModule {
             context,
             WordDatabase::class.java,
             "word.db"
-        ).build()
+        ).addMigrations(migration2To3).build()
     }
 
     @Provides
