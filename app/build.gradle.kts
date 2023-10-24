@@ -28,6 +28,10 @@ android {
         }
     }
 
+    sourceSets {
+        // Adds exported schema location as test app assets.
+        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+    }
 
 
     buildTypes {
